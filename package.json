@@ -1,0 +1,26 @@
+{
+  "name": "amx-authorization-header",
+  "version": "0.0.1",
+  "description": "Library for generating the AMX authorization header",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardost/amx-authorization-header-nodejs.git"
+  },
+  "keywords": [
+    "amx",
+    "nodejs"
+  ],
+  "author": "Leonardo Sameshima Taba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonardost/amx-authorization-header-nodejs/issues"
+  },
+  "homepage": "https://github.com/leonardost/amx-authorization-header-nodejs#readme",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}
