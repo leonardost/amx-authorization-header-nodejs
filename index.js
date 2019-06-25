@@ -3,7 +3,7 @@
 const crypto = require("crypto");
 const uuid = require("uuid");
 
-const buildAmxHeader = (appId, appKey, method, url, body = null) => {
+const buildHeader = (appId, appKey, method, url, body = null) => {
   const encodedURI = encodeURIComponent(url).toLowerCase();
   const processedBody = processBody(body);
   const timestamp = Math.floor(new Date() / 1000);
@@ -31,4 +31,6 @@ const processBody = body => {
   return Buffer.from(md5HashByteArray).toString("base64");
 };
 
-module.exports = buildAmxHeader;
+module.exports = {
+  buildHeader
+};
