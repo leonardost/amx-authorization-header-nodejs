@@ -1,10 +1,10 @@
 {
   "name": "amx-authorization-header",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Library for generating the AMX authorization header",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\""
+    "test": "node tests"
   },
   "repository": {
     "type": "git",
