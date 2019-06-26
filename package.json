@@ -12,7 +12,8 @@
   },
   "keywords": [
     "amx",
-    "nodejs"
+    "authorization",
+    "token"
   ],
   "author": "Leonardo Sameshima Taba",
   "license": "MIT",
