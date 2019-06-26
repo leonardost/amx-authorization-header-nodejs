@@ -3,14 +3,14 @@
 const crypto = require("crypto");
 const uuid = require("uuid");
 
-const buildHeader = (appId, appKey, method, url, body = null, testTimestamp = null, testNonce = null) => {
-  if (!isAppIdValid(appId)) throw new Error("Invalid appId");
+const buildHeader = (appId, appKey, method, url, body = null) => {
+  checkIfParametersAreValid(appId, appKey, method, url, body);
 
   const encodedURI = encodeURIComponent(url).toLowerCase();
+  const timestamp = Math.floor(Date.now() / 1000);
+  const nonce = uuid.v1().replace(/-/g, "");
   const processedBody = processBody(body);
-  const timestamp = testTimestamp || Math.floor(new Date() / 1000);
-  const nonce = testNonce || uuid.v1().replace(/-/g, "");
-  const rawSignature = [appId, method, encodedURI, timestamp, nonce, processedBody].join("");
+  const rawSignature = [appId, method.toUpperCase(), encodedURI, timestamp, nonce, processedBody].join("");
 
   const secret = Buffer.from(appKey, "base64");
   const signatureBase64 = crypto
@@ -21,7 +21,17 @@ const buildHeader = (appId, appKey, method, url, body = null, testTimestamp = nu
   return "amx " + [appId, signatureBase64, nonce, timestamp].join(":");
 };
 
-const isAppIdValid = value =>
+const checkIfParametersAreValid = (appId, appKey, method, url, body) => {
+  if (!isValidString(appId)) {
+    throw new Error("Invalid appId to generate AMX authorization header");
+  }
+  const validMethods = [ 'GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'HEAD', 'OPTIONS', 'TRACE' ];
+  if (!isValidString(method) || !validMethods.includes(method.toUpperCase())) {
+    throw new Error("Invalid method to generate AMX authorization header");
+  }
+;}
+
+const isValidString = value =>
   typeof value === "string" && value.length > 0;
 
 const processBody = body => {
