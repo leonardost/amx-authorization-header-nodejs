@@ -2,7 +2,7 @@
 
 ![version](https://img.shields.io/badge/version-1.0.0-green.svg?cacheSeconds=2592000)
 
-Library for generating the AMX authorization header in Node.js
+Library for generating an AMX authorization header in Node.js
 
 ## Installation
 
@@ -20,4 +20,4 @@ const amxHeader = amx.buildHeader(appId, appKey, method, uri, body);
 
 ## License
 
-This project is licensed under the terms of the **MIT** license.
+This project is licensed under the terms of the MIT license.
